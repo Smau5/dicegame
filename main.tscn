@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dg47iip1e87cu"]
+
+[ext_resource type="Script" uid="uid://bnq3jkwe4d37p" path="res://PlayerHand.cs" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://csv5xdjd17k2b" path="res://Main.cs" id="1_h2yge"]
+[ext_resource type="PackedScene" uid="uid://drfujxqcy41m4" path="res://action.tscn" id="2_lquwl"]
+[ext_resource type="Script" uid="uid://bi1hxg6wpsecr" path="res://DiceManager.cs" id="3_1bvp3"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_h2yge")
+
+[node name="Action" parent="." instance=ExtResource("2_lquwl")]
+position = Vector2(276, 209)
+ActionName = "Attack!"
+
+[node name="PlayerHand" type="Node2D" parent="."]
+script = ExtResource("1_0xm2m")
+
+[node name="DiceManager" type="Node2D" parent="."]
+script = ExtResource("3_1bvp3")
+
+[node name="RerollAllButton" type="Button" parent="."]
+offset_left = 13.0
+offset_top = 973.0
+offset_right = 356.0
+offset_bottom = 1071.0
+theme_override_font_sizes/font_size = 40
+text = "Reroll All
+"
+
+[connection signal="pressed" from="RerollAllButton" to="PlayerHand" method="OnRerollAllButtonPressed"]

@@ -1,0 +1,50 @@
+[gd_scene load_steps=3 format=3 uid="uid://buvquayo0ycoj"]
+
+[ext_resource type="Script" uid="uid://ddw4ex5sljbu0" path="res://Dice.cs" id="1_ju2fo"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ju2fo"]
+size = Vector2(100, 100)
+
+[node name="Dice" type="Node2D"]
+script = ExtResource("1_ju2fo")
+metadata/_edit_group_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ju2fo")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -50.0
+offset_right = 50.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="Label" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -11.5
+offset_top = -27.5
+offset_right = 11.5
+offset_bottom = 27.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 60
+text = "0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="input_event" from="Area2D" to="." method="OnArea2dInputEvent"]
