@@ -17,17 +17,19 @@ public class HandDice
 
 public partial class PlayerHand : Node2D
 {
-    const int DiceCount = 3;
+    const int DiceCount = 5;
     private PackedScene DiceScene = GD.Load<PackedScene>("res://dice.tscn");
     // Get the center X of the screen
+    float screenCenterX = 0;
     float PositionX = 200;
-    float PositionY = 800;
+    float PositionY = 600;
 
     private DiceManager DiceManager = null;
     private List<HandDice> HandDices = new List<HandDice>();
 
     public override void _Ready()
     {
+        screenCenterX = GetViewportRect().Size.X / 2;
         DiceManager = GetNode<DiceManager>("../DiceManager");
         float spacing = 150;
         for (int i = 0; i < DiceCount; i++)
@@ -47,13 +49,20 @@ public partial class PlayerHand : Node2D
         var usedHandDice = HandDices.Find(h => h.Dice == usedDice);
         usedHandDice.Used = true;
         usedHandDice.Dice.SetEnabled(false);
+        SetSelected(usedHandDice.Dice, false);
     }
 
     public void ToggleSelected(Dice selectedDice)
     {
         var handDice = HandDices.Find(h => h.Dice == selectedDice);
-        handDice.Selected = !handDice.Selected;
-        if (handDice.Selected)
+        SetSelected(selectedDice, !handDice.Selected);
+    }
+
+    public void SetSelected(Dice selectedDice, bool selected)
+    {
+        var handDice = HandDices.Find(h => h.Dice == selectedDice);
+        handDice.Selected = selected;
+        if (selected)
         {
             handDice.Dice.Scale = new Vector2(1.1f, 1.1f);
         }
@@ -63,7 +72,7 @@ public partial class PlayerHand : Node2D
         }
     }
 
-    public void OnRerollAllButtonPressed()
+    public void RerollAllDices()
     {
 
         foreach (var handDice in HandDices)
@@ -75,7 +84,7 @@ public partial class PlayerHand : Node2D
 
     }
 
-    public void OnRerollSelectedPressed()
+    public void RerollSelectedDices()
     {
         foreach (var handDice in HandDices)
         {

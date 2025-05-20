@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dg47iip1e87cu"]
+[gd_scene load_steps=6 format=3 uid="uid://dg47iip1e87cu"]
 
 [ext_resource type="Script" uid="uid://csv5xdjd17k2b" path="res://Battle.cs" id="1_1046u"]
 [ext_resource type="PackedScene" uid="uid://drfujxqcy41m4" path="res://action.tscn" id="2_pjn1s"]
 [ext_resource type="Script" uid="uid://bnq3jkwe4d37p" path="res://PlayerHand.cs" id="3_yflgj"]
 [ext_resource type="Script" uid="uid://bi1hxg6wpsecr" path="res://DiceManager.cs" id="4_lrdw4"]
+[ext_resource type="Script" uid="uid://dv7271muq0tt4" path="res://RerollSelectedButton.cs" id="5_pjn1s"]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_1046u")
@@ -19,21 +20,40 @@ script = ExtResource("3_yflgj")
 script = ExtResource("4_lrdw4")
 
 [node name="RerollAllButton" type="Button" parent="."]
-offset_left = 13.0
-offset_top = 973.0
-offset_right = 356.0
-offset_bottom = 1071.0
+offset_left = 1554.0
+offset_top = 964.0
+offset_right = 1897.0
+offset_bottom = 1062.0
 theme_override_font_sizes/font_size = 40
 text = "Reroll All
 "
 
-[node name="RerollSelected" type="Button" parent="."]
-offset_left = 372.0
-offset_top = 971.0
-offset_right = 686.0
-offset_bottom = 1067.0
+[node name="RerollSelectedButton" type="Button" parent="."]
+offset_left = 18.0
+offset_top = 944.0
+offset_right = 439.0
+offset_bottom = 1062.0
 theme_override_font_sizes/font_size = 40
-text = "Reroll Selected"
+text = "Reroll Selected
+Remaining: "
+script = ExtResource("5_pjn1s")
 
-[connection signal="pressed" from="RerollAllButton" to="PlayerHand" method="OnRerollAllButtonPressed"]
-[connection signal="pressed" from="RerollSelected" to="PlayerHand" method="OnRerollSelectedPressed"]
+[node name="PlayerScore" type="Label" parent="."]
+offset_left = 29.0
+offset_top = 399.0
+offset_right = 311.0
+offset_bottom = 454.0
+theme_override_font_sizes/font_size = 40
+text = "Player Score: 0"
+
+[node name="PlayDices" type="Button" parent="."]
+offset_left = 455.0
+offset_top = 947.0
+offset_right = 807.0
+offset_bottom = 1060.0
+theme_override_font_sizes/font_size = 40
+text = "Play!"
+
+[connection signal="pressed" from="RerollAllButton" to="." method="ResetBattle"]
+[connection signal="pressed" from="RerollSelectedButton" to="." method="OnRerollSelectedPressed"]
+[connection signal="pressed" from="PlayDices" to="." method="PlayDices"]
