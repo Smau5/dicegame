@@ -27,4 +27,13 @@ theme_override_font_sizes/font_size = 40
 text = "Reroll All
 "
 
+[node name="RerollSelected" type="Button" parent="."]
+offset_left = 372.0
+offset_top = 971.0
+offset_right = 686.0
+offset_bottom = 1067.0
+theme_override_font_sizes/font_size = 40
+text = "Reroll Selected"
+
 [connection signal="pressed" from="RerollAllButton" to="PlayerHand" method="OnRerollAllButtonPressed"]
+[connection signal="pressed" from="RerollSelected" to="PlayerHand" method="OnRerollSelectedPressed"]

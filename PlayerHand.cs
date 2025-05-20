@@ -6,11 +6,12 @@ public class HandDice
 {
     public Dice Dice;
     public bool Used;
+    public bool Selected = false;
 
-    public HandDice(Dice dice, bool used)
+    public HandDice(Dice dice)
     {
         Dice = dice;
-        Used = used;
+
     }
 }
 
@@ -35,7 +36,7 @@ public partial class PlayerHand : Node2D
             float x = PositionX + i * spacing;
             diceInstance.Position = new Vector2(x, PositionY);
             diceInstance.SnapPosition = new Vector2(x, PositionY);
-            HandDices.Add(new HandDice(diceInstance, false));
+            HandDices.Add(new HandDice(diceInstance));
             AddChild(diceInstance);
         }
     }
@@ -48,6 +49,20 @@ public partial class PlayerHand : Node2D
         usedHandDice.Dice.SetEnabled(false);
     }
 
+    public void ToggleSelected(Dice selectedDice)
+    {
+        var handDice = HandDices.Find(h => h.Dice == selectedDice);
+        handDice.Selected = !handDice.Selected;
+        if (handDice.Selected)
+        {
+            handDice.Dice.Scale = new Vector2(1.1f, 1.1f);
+        }
+        else
+        {
+            handDice.Dice.Scale = new Vector2(1f, 1f);
+        }
+    }
+
     public void OnRerollAllButtonPressed()
     {
 
@@ -58,6 +73,18 @@ public partial class PlayerHand : Node2D
             handDice.Dice.Roll();
         }
 
+    }
+
+    public void OnRerollSelectedPressed()
+    {
+        foreach (var handDice in HandDices)
+        {
+            if (handDice.Selected)
+            {
+                ToggleSelected(handDice.Dice);
+                handDice.Dice.Roll();
+            }
+        }
     }
 
 

@@ -3,8 +3,13 @@ using System;
 
 public partial class DiceManager : Node2D
 {
+    private Dice PendingDiceToDrag = null;
+    private bool isMouseDown = false;
+    private float dragDelay = 0.15f; // seconds
+    private float mouseDownTime = 0f;
     public Dice DiceBeingDragged = null;
     private PlayerHand PlayerHand = null;
+
 
     public override void _Ready()
     {
@@ -22,7 +27,9 @@ public partial class DiceManager : Node2D
                     var dice = DiceUnderCursor();
                     if (dice is not null && dice is Dice)
                     {
-                        DiceBeingDragged = (Dice)dice;
+                        isMouseDown = true;
+                        mouseDownTime = 0f;
+                        PendingDiceToDrag = (Dice)dice;
                     }
                 }
                 else
@@ -38,6 +45,12 @@ public partial class DiceManager : Node2D
                         DiceBeingDragged.Position = DiceBeingDragged.SnapPosition;
                         DiceBeingDragged = null;
                     }
+                    else if (isMouseDown && PendingDiceToDrag != null)
+                    {
+                        PlayerHand.ToggleSelected(PendingDiceToDrag);
+                    }
+                    isMouseDown = false;
+                    PendingDiceToDrag = null;
                 }
             }
         }
@@ -104,6 +117,17 @@ public partial class DiceManager : Node2D
 
     public override void _Process(double delta)
     {
+        // check if should start dragging
+        if (isMouseDown && PendingDiceToDrag != null)
+        {
+            mouseDownTime += (float)delta;
+            if (mouseDownTime > dragDelay && DiceBeingDragged == null)
+            {
+                DiceBeingDragged = PendingDiceToDrag;
+            }
+        }
+
+        // drag dice
         if (DiceBeingDragged is not null)
         {
             var mousePosition = GetGlobalMousePosition();
