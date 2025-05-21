@@ -26,6 +26,14 @@ public partial class Dice : Node2D
         label.Text = $"{diceRoll}";
     }
 
+    public void Reset()
+    {
+        Value = 0;
+        Label label = GetNode<Label>("Label");
+        label.Text = $"{Value}";
+
+    }
+
     public void SetEnabled(bool value)
     {
         _enabled = value;

@@ -16,6 +16,7 @@ public partial class Battle : Node2D
     int score = 0;
     int targetScore = 50;
     private PlayerScore PlayerScore = null;
+    private TargetScore TargetScore = null;
 
     public override void _Ready()
     {
@@ -26,6 +27,8 @@ public partial class Battle : Node2D
         PlayerHand = GetNode<PlayerHand>("PlayerHand");
         RerollSelected = GetNode<RerollSelectedButton>("RerollSelectedButton");
         PlayerScore = GetNode<PlayerScore>("PlayerScore");
+        TargetScore = GetNode<TargetScore>("TargetScore");
+        TargetScore.SetScore(targetScore);
         RerollSelected.SetLabel(PlayerRerollRemaining);
     }
 
@@ -53,8 +56,9 @@ public partial class Battle : Node2D
 
     public void ResetBattle()
     {
-        SetRemainingRerolls(playerRerolls);
-        PlayerHand.RerollAllDices();
+        PlayerHand.SetAllDicesInitial();
+        PlayerScore.SetScore(0);
+        TargetScore.SetScore(50);
         score = 0;
     }
 

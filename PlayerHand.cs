@@ -74,12 +74,21 @@ public partial class PlayerHand : Node2D
 
     public void RerollAllDices()
     {
-
         foreach (var handDice in HandDices)
         {
             handDice.Used = false;
             handDice.Dice.SetEnabled(true);
             handDice.Dice.Roll();
+        }
+    }
+
+    public void SetAllDicesInitial()
+    {
+        foreach (var handDice in HandDices)
+        {
+            handDice.Used = false;
+            handDice.Dice.SetEnabled(true);
+            handDice.Dice.Reset();
         }
 
     }
