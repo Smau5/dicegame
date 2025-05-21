@@ -15,7 +15,7 @@ public class HandDice
     }
 }
 
-public partial class PlayerHand : Node2D
+public partial class PlayerField : Node2D
 {
     const int DiceCount = 5;
     private PackedScene DiceScene = GD.Load<PackedScene>("res://dice.tscn");

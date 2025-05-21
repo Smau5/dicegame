@@ -8,12 +8,12 @@ public partial class DiceManager : Node2D
     private float dragDelay = 0.15f; // seconds
     private float mouseDownTime = 0f;
     public Dice DiceBeingDragged = null;
-    private PlayerHand PlayerHand = null;
+    private PlayerField PlayerField = null;
 
 
     public override void _Ready()
     {
-        PlayerHand = GetNode<PlayerHand>("../PlayerHand");
+        PlayerField = GetNode<PlayerField>("../PlayerField");
     }
 
     public override void _Input(InputEvent @event)
@@ -40,14 +40,14 @@ public partial class DiceManager : Node2D
                         if (action is not null && action is Action)
                         {
                             (action as Action).Execute(DiceBeingDragged);
-                            PlayerHand.SetDiceAsUsed(DiceBeingDragged);
+                            PlayerField.SetDiceAsUsed(DiceBeingDragged);
                         }
                         DiceBeingDragged.Position = DiceBeingDragged.SnapPosition;
                         DiceBeingDragged = null;
                     }
                     else if (isMouseDown && PendingDiceToDrag != null)
                     {
-                        PlayerHand.ToggleSelected(PendingDiceToDrag);
+                        PlayerField.ToggleSelected(PendingDiceToDrag);
                     }
                     isMouseDown = false;
                     PendingDiceToDrag = null;
@@ -130,8 +130,12 @@ public partial class DiceManager : Node2D
         // drag dice
         if (DiceBeingDragged is not null)
         {
-            var mousePosition = GetGlobalMousePosition();
-            DiceBeingDragged.Position = mousePosition;
+            var parent = DiceBeingDragged.GetParent() as Node2D;
+            if (parent != null)
+            {
+                // drag local to parent position 
+                DiceBeingDragged.Position = parent.ToLocal(GetGlobalMousePosition());
+            }
         }
     }
 

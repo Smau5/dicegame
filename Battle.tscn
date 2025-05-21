@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://csv5xdjd17k2b" path="res://Battle.cs" id="1_1046u"]
 [ext_resource type="PackedScene" uid="uid://drfujxqcy41m4" path="res://action.tscn" id="2_pjn1s"]
-[ext_resource type="Script" uid="uid://bnq3jkwe4d37p" path="res://PlayerHand.cs" id="3_yflgj"]
-[ext_resource type="Script" uid="uid://bi1hxg6wpsecr" path="res://DiceManager.cs" id="4_lrdw4"]
+[ext_resource type="PackedScene" uid="uid://cr2ce065ecsvp" path="res://dice_manager.tscn" id="4_lrdw4"]
 [ext_resource type="Script" uid="uid://dv7271muq0tt4" path="res://RerollSelectedButton.cs" id="5_pjn1s"]
 [ext_resource type="Script" uid="uid://bpoi66bcj0dim" path="res://PlayerScore.cs" id="6_yflgj"]
 [ext_resource type="Script" uid="uid://c3nigm3o0l12c" path="res://TargetScore.cs" id="7_lrdw4"]
+[ext_resource type="Script" uid="uid://bnq3jkwe4d37p" path="res://PlayerField.cs" id="8_3hmwm"]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_1046u")
@@ -16,11 +16,12 @@ visible = false
 position = Vector2(285, 218)
 ActionName = "Attack!"
 
-[node name="PlayerHand" type="Node2D" parent="."]
-position = Vector2(939, 741)
-script = ExtResource("3_yflgj")
+[node name="PlayerField" type="Node2D" parent="."]
+position = Vector2(946, 576)
+script = ExtResource("8_3hmwm")
+metadata/_edit_group_ = true
 
-[node name="ColorRect" type="ColorRect" parent="PlayerHand"]
+[node name="ColorRect" type="ColorRect" parent="PlayerField"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -34,8 +35,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.215902, 0.215902, 0.215902, 1)
 
-[node name="DiceManager" type="Node2D" parent="."]
-script = ExtResource("4_lrdw4")
+[node name="DiceManager" parent="." instance=ExtResource("4_lrdw4")]
 
 [node name="RerollAllButton" type="Button" parent="."]
 offset_left = 1554.0
@@ -81,6 +81,8 @@ offset_bottom = 235.0
 theme_override_font_sizes/font_size = 40
 text = "Target Score: "
 script = ExtResource("7_lrdw4")
+
+[node name="Node2D" type="Node2D" parent="."]
 
 [connection signal="pressed" from="RerollAllButton" to="." method="ResetBattle"]
 [connection signal="pressed" from="RerollSelectedButton" to="." method="OnRerollSelectedPressed"]

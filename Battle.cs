@@ -11,7 +11,7 @@ public partial class Battle : Node2D
     const int playerThrows = 3;
     int PlayerRerollRemaining = playerRerolls;
     int PlayerThrowsRemaining = playerThrows;
-    private PlayerHand PlayerHand = null;
+    private PlayerField PlayerField = null;
     private RerollSelectedButton RerollSelected = null;
     int score = 0;
     int targetScore = 50;
@@ -24,7 +24,7 @@ public partial class Battle : Node2D
         GetViewport().PhysicsObjectPickingFirstOnly = true;
 
 
-        PlayerHand = GetNode<PlayerHand>("PlayerHand");
+        PlayerField = GetNode<PlayerField>("PlayerField");
         RerollSelected = GetNode<RerollSelectedButton>("RerollSelectedButton");
         PlayerScore = GetNode<PlayerScore>("PlayerScore");
         TargetScore = GetNode<TargetScore>("TargetScore");
@@ -38,7 +38,7 @@ public partial class Battle : Node2D
         if (PlayerRerollRemaining > 0)
         {
             SetRemainingRerolls(PlayerRerollRemaining - 1);
-            PlayerHand.RerollSelectedDices();
+            PlayerField.RerollSelectedDices();
         }
     }
 
@@ -56,7 +56,7 @@ public partial class Battle : Node2D
 
     public void ResetBattle()
     {
-        PlayerHand.SetAllDicesInitial();
+        PlayerField.SetAllDicesInitial();
         PlayerScore.SetScore(0);
         TargetScore.SetScore(50);
         score = 0;
@@ -65,9 +65,9 @@ public partial class Battle : Node2D
 
     public void PlayDices()
     {
-        var dices = PlayerHand.GetDices();
+        var dices = PlayerField.GetDices();
 
-        PlayerHand.RerollAllDices();
+        PlayerField.RerollAllDices();
         List<int> seenNumbers = new List<int>();
         foreach (var item in dices)
         {
