@@ -20,22 +20,23 @@ public partial class PlayerHand : Node2D
     const int DiceCount = 5;
     private PackedScene DiceScene = GD.Load<PackedScene>("res://dice.tscn");
     // Get the center X of the screen
-    float screenCenterX = 0;
-    float PositionX = 200;
-    float PositionY = 600;
+    float PositionX = 0;
+    float PositionY = 0;
 
     private DiceManager DiceManager = null;
     private List<HandDice> HandDices = new List<HandDice>();
 
+    private ColorRect ColorRect = null;
+
     public override void _Ready()
     {
-        screenCenterX = GetViewportRect().Size.X / 2;
         DiceManager = GetNode<DiceManager>("../DiceManager");
+        ColorRect = GetNode<ColorRect>("ColorRect");
         float spacing = 150;
         for (int i = 0; i < DiceCount; i++)
         {
             Dice diceInstance = DiceScene.Instantiate<Dice>();
-            float x = PositionX + i * spacing;
+            float x = spacing - (ColorRect.Size.X /2) + i * spacing;
             diceInstance.Position = new Vector2(x, PositionY);
             diceInstance.SnapPosition = new Vector2(x, PositionY);
             HandDices.Add(new HandDice(diceInstance));
