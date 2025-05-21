@@ -97,5 +97,16 @@ public partial class PlayerHand : Node2D
     }
 
 
+    public List<Dice> GetDices()
+    {
+        var dices = new List<Dice>();
+        foreach (var handDice in HandDices)
+        {
+            dices.Add(handDice.Dice);
+        }
+        return dices;
+    }
+
+
 
 }

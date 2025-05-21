@@ -1,16 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://dg47iip1e87cu"]
+[gd_scene load_steps=7 format=3 uid="uid://dg47iip1e87cu"]
 
 [ext_resource type="Script" uid="uid://csv5xdjd17k2b" path="res://Battle.cs" id="1_1046u"]
 [ext_resource type="PackedScene" uid="uid://drfujxqcy41m4" path="res://action.tscn" id="2_pjn1s"]
 [ext_resource type="Script" uid="uid://bnq3jkwe4d37p" path="res://PlayerHand.cs" id="3_yflgj"]
 [ext_resource type="Script" uid="uid://bi1hxg6wpsecr" path="res://DiceManager.cs" id="4_lrdw4"]
 [ext_resource type="Script" uid="uid://dv7271muq0tt4" path="res://RerollSelectedButton.cs" id="5_pjn1s"]
+[ext_resource type="Script" uid="uid://bpoi66bcj0dim" path="res://PlayerScore.cs" id="6_yflgj"]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_1046u")
 
 [node name="Action" parent="." instance=ExtResource("2_pjn1s")]
-position = Vector2(276, 209)
+visible = false
+position = Vector2(285, 218)
 ActionName = "Attack!"
 
 [node name="PlayerHand" type="Node2D" parent="."]
@@ -29,6 +31,7 @@ text = "Reroll All
 "
 
 [node name="RerollSelectedButton" type="Button" parent="."]
+visible = false
 offset_left = 18.0
 offset_top = 944.0
 offset_right = 439.0
@@ -39,12 +42,13 @@ Remaining: "
 script = ExtResource("5_pjn1s")
 
 [node name="PlayerScore" type="Label" parent="."]
-offset_left = 29.0
-offset_top = 399.0
-offset_right = 311.0
-offset_bottom = 454.0
+offset_left = 129.0
+offset_top = 741.0
+offset_right = 411.0
+offset_bottom = 796.0
 theme_override_font_sizes/font_size = 40
-text = "Player Score: 0"
+text = "Player Score:"
+script = ExtResource("6_yflgj")
 
 [node name="PlayDices" type="Button" parent="."]
 offset_left = 455.0
