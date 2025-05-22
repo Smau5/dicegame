@@ -1,15 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://nc06ptlq0cgl"]
-
-[ext_resource type="PackedScene" uid="uid://cr2ce065ecsvp" path="res://dice_manager.tscn" id="1_ll2xe"]
-[ext_resource type="PackedScene" uid="uid://buvquayo0ycoj" path="res://dice.tscn" id="2_xrgmn"]
-[ext_resource type="PackedScene" uid="uid://br2ombnbjci7j" path="res://player_field.tscn" id="3_2wvic"]
+[gd_scene format=3 uid="uid://nc06ptlq0cgl"]
 
 [node name="Lobby" type="Node2D"]
 
-[node name="DiceManager" parent="." instance=ExtResource("1_ll2xe")]
+[node name="Label" type="Label" parent="."]
+offset_left = 737.0
+offset_top = 119.0
+offset_right = 1094.0
+offset_bottom = 290.0
+theme_override_font_sizes/font_size = 40
+text = "test lobby
 
-[node name="Dice" parent="." instance=ExtResource("2_xrgmn")]
-position = Vector2(1489, 168)
-
-[node name="PlayerField" parent="." instance=ExtResource("3_2wvic")]
-position = Vector2(891, 706)
+"

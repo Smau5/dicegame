@@ -7,6 +7,8 @@ using System.Linq;
 
 public partial class Battle : Node2D
 {
+    [Signal]
+    public delegate void EndedEventHandler(Battle battle);
     const int playerRerolls = 1;
     const int playerThrows = 3;
     int PlayerRerollRemaining = playerRerolls;
@@ -60,6 +62,7 @@ public partial class Battle : Node2D
         PlayerScore.SetScore(0);
         TargetScore.SetScore(50);
         score = 0;
+        EmitSignal(SignalName.Ended);
     }
 
 

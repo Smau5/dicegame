@@ -17,7 +17,6 @@ public class HandDice
 
 public partial class PlayerField : Node2D
 {
-    const int DiceCount = 5;
     private PackedScene DiceScene = GD.Load<PackedScene>("res://dice.tscn");
     // Get the center X of the screen
     float PositionX = 0;
@@ -32,11 +31,16 @@ public partial class PlayerField : Node2D
     {
         DiceManager = GetNode<DiceManager>("../DiceManager");
         ColorRect = GetNode<ColorRect>("ColorRect");
+    }
+
+    public void InitializeDices(int diceCount)
+    {
+
         float spacing = 150;
-        for (int i = 0; i < DiceCount; i++)
+        for (int i = 0; i < diceCount; i++)
         {
             Dice diceInstance = DiceScene.Instantiate<Dice>();
-            float x = spacing - (ColorRect.Size.X /2) + i * spacing;
+            float x = spacing - (ColorRect.Size.X / 2) + i * spacing;
             diceInstance.Position = new Vector2(x, PositionY);
             diceInstance.SnapPosition = new Vector2(x, PositionY);
             HandDices.Add(new HandDice(diceInstance));
