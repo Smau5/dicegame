@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://csv5xdjd17k2b" path="res://Battle.cs" id="1_1046u"]
 [ext_resource type="PackedScene" uid="uid://drfujxqcy41m4" path="res://action.tscn" id="2_pjn1s"]
+[ext_resource type="PackedScene" uid="uid://br2ombnbjci7j" path="res://player_field.tscn" id="3_lrdw4"]
 [ext_resource type="PackedScene" uid="uid://cr2ce065ecsvp" path="res://dice_manager.tscn" id="4_lrdw4"]
 [ext_resource type="Script" uid="uid://dv7271muq0tt4" path="res://RerollSelectedButton.cs" id="5_pjn1s"]
 [ext_resource type="Script" uid="uid://bpoi66bcj0dim" path="res://PlayerScore.cs" id="6_yflgj"]
 [ext_resource type="Script" uid="uid://c3nigm3o0l12c" path="res://TargetScore.cs" id="7_lrdw4"]
-[ext_resource type="Script" uid="uid://bnq3jkwe4d37p" path="res://PlayerField.cs" id="8_3hmwm"]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_1046u")
@@ -16,24 +16,8 @@ visible = false
 position = Vector2(285, 218)
 ActionName = "Attack!"
 
-[node name="PlayerField" type="Node2D" parent="."]
+[node name="PlayerField" parent="." instance=ExtResource("3_lrdw4")]
 position = Vector2(946, 576)
-script = ExtResource("8_3hmwm")
-metadata/_edit_group_ = true
-
-[node name="ColorRect" type="ColorRect" parent="PlayerField"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -393.0
-offset_top = -111.0
-offset_right = 482.0
-offset_bottom = 111.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.215902, 0.215902, 0.215902, 1)
 
 [node name="DiceManager" parent="." instance=ExtResource("4_lrdw4")]
 
