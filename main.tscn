@@ -1,10 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bb68ddt35q233"]
+[gd_scene load_steps=5 format=3 uid="uid://bb68ddt35q233"]
 
 [ext_resource type="Script" uid="uid://n3kq7rwfkncf" path="res://Main.cs" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://dg47iip1e87cu" path="res://Battle.tscn" id="2_0xm2m"]
 [ext_resource type="PackedScene" uid="uid://br2ombnbjci7j" path="res://player_field.tscn" id="2_h2yge"]
 [ext_resource type="PackedScene" uid="uid://cr2ce065ecsvp" path="res://dice_manager.tscn" id="3_1bvp3"]
-[ext_resource type="Script" uid="uid://c0c7b4rys58qm" path="res://Lives.cs" id="5_lquwl"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_h2yge")
@@ -15,10 +14,3 @@ script = ExtResource("1_h2yge")
 position = Vector2(942, 597)
 
 [node name="DiceManager" parent="." instance=ExtResource("3_1bvp3")]
-
-[node name="Lives" type="Label" parent="."]
-offset_left = 120.0
-offset_top = 351.0
-offset_right = 466.0
-offset_bottom = 423.0
-script = ExtResource("5_lquwl")

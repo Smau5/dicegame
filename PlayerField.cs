@@ -27,6 +27,9 @@ public partial class PlayerField : Node2D
 
     private ColorRect ColorRect = null;
 
+    [Export]
+    public DiceStats[] initialDices = new DiceStats[6];
+
     public override void _Ready()
     {
         DiceManager = GetNode<DiceManager>("../DiceManager");

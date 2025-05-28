@@ -1,7 +1,7 @@
 using Godot;
-using System;
 
-public partial class PlayerStats : Node
+[GlobalClass]
+public partial class PlayerStats : Resource
 {
     [Export]
     private int _lives = 0;

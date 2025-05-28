@@ -1,12 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://dg47iip1e87cu"]
+[gd_scene load_steps=8 format=3 uid="uid://dg47iip1e87cu"]
 
 [ext_resource type="Script" uid="uid://csv5xdjd17k2b" path="res://Battle.cs" id="1_1046u"]
+[ext_resource type="Resource" uid="uid://c1hd0e1c645xs" path="res://Resources/PlayerStats/StandardPlayerStats.tres" id="2_lrdw4"]
 [ext_resource type="Script" uid="uid://dv7271muq0tt4" path="res://RerollSelectedButton.cs" id="5_pjn1s"]
+[ext_resource type="PackedScene" uid="uid://br2ombnbjci7j" path="res://player_field.tscn" id="5_yflgj"]
 [ext_resource type="Script" uid="uid://bpoi66bcj0dim" path="res://PlayerScore.cs" id="6_yflgj"]
+[ext_resource type="PackedScene" uid="uid://cr2ce065ecsvp" path="res://dice_manager.tscn" id="7_3hmwm"]
 [ext_resource type="Script" uid="uid://c3nigm3o0l12c" path="res://TargetScore.cs" id="7_lrdw4"]
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_1046u")
+playerStats = ExtResource("2_lrdw4")
 
 [node name="RerollAllButton" type="Button" parent="."]
 offset_left = 1554.0
@@ -52,6 +56,11 @@ offset_bottom = 213.0
 theme_override_font_sizes/font_size = 40
 text = "Target Score: "
 script = ExtResource("7_lrdw4")
+
+[node name="PlayerField" parent="." instance=ExtResource("5_yflgj")]
+position = Vector2(930, 708)
+
+[node name="DiceManager" parent="." instance=ExtResource("7_3hmwm")]
 
 [connection signal="pressed" from="RerollAllButton" to="." method="ResetBattle"]
 [connection signal="pressed" from="RerollSelectedButton" to="." method="OnRerollSelectedPressed"]

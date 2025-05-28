@@ -1,9 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://br2ombnbjci7j"]
+[gd_scene load_steps=3 format=3 uid="uid://br2ombnbjci7j"]
 
 [ext_resource type="Script" uid="uid://bnq3jkwe4d37p" path="res://PlayerField.cs" id="1_eu687"]
+[ext_resource type="Resource" uid="uid://b3tpy6vgx8rej" path="res://Resources/Dices/BasicDice.tres" id="2_71g3b"]
 
 [node name="PlayerField" type="Node2D"]
 script = ExtResource("1_eu687")
+initialDices = [ExtResource("2_71g3b"), ExtResource("2_71g3b"), ExtResource("2_71g3b"), ExtResource("2_71g3b"), ExtResource("2_71g3b"), ExtResource("2_71g3b")]
 metadata/_edit_group_ = true
 
 [node name="ColorRect" type="ColorRect" parent="."]

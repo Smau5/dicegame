@@ -19,6 +19,8 @@ public partial class Battle : Node2D
     int targetScore = 50;
     private PlayerScore PlayerScore = null;
     private TargetScore TargetScore = null;
+    [Export]
+    public PlayerStats playerStats = null;
 
     public override void _Ready()
     {

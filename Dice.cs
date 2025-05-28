@@ -7,6 +7,8 @@ public partial class Dice : Node2D
     public Vector2 SnapPosition = new Vector2(0, 0);
     public int Value = 0;
     private bool _enabled = true;
+    [Export]
+    public DiceStats stats;
     public bool Enabled
     {
         get { return _enabled; }
@@ -15,12 +17,12 @@ public partial class Dice : Node2D
     {
         // initial snapPosition
         SnapPosition = Position;
+        Roll();
     }
 
     public void Roll()
     {
-        Random rnd = new Random();
-        int diceRoll = rnd.Next(1, 7);
+        int diceRoll = stats.GetRandomNumber();
         Value = diceRoll;
         Label label = GetNode<Label>("Label");
         label.Text = $"{diceRoll}";

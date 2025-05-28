@@ -1,4 +1,6 @@
-[gd_scene format=3 uid="uid://nc06ptlq0cgl"]
+[gd_scene load_steps=2 format=3 uid="uid://nc06ptlq0cgl"]
+
+[ext_resource type="PackedScene" uid="uid://br2ombnbjci7j" path="res://player_field.tscn" id="1_ll2xe"]
 
 [node name="Lobby" type="Node2D"]
 
@@ -11,3 +13,6 @@ theme_override_font_sizes/font_size = 40
 text = "test lobby
 
 "
+
+[node name="PlayerField" parent="." instance=ExtResource("1_ll2xe")]
+position = Vector2(814, 703)
