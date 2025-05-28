@@ -45,6 +45,21 @@ public partial class PlayerField : Node2D
         }
     }
 
+    public void InitializeDices(Godot.Collections.Array<DiceStats> dices)
+    {
+        float spacing = 150;
+        for (int i = 0; i < dices.Count; i++)
+        {
+            Dice diceInstance = DiceScene.Instantiate<Dice>();
+            float x = spacing - (ColorRect.Size.X / 2) + i * spacing;
+            diceInstance.Position = new Vector2(x, PositionY);
+            diceInstance.SnapPosition = new Vector2(x, PositionY);
+            diceInstance.stats = dices[i];
+            HandDices.Add(new HandDice(diceInstance));
+            AddChild(diceInstance);
+        }
+    }
+
 
     // public void SetDiceAsUsed(Dice usedDice)
     // {

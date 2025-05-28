@@ -11,10 +11,10 @@ public partial class Battle : Node2D
     public delegate void EndedEventHandler(Battle battle);
     [Export]
     int NumberOfRounds = 3;
-    private PlayerField PlayerField = null;
-    int score = 0;
     [Export]
     int targetScore = 50;
+    private PlayerField PlayerField = null;
+    int score = 0;
     private PlayerScore PlayerScore = null;
     private TargetScore TargetScore = null;
     [Export]
@@ -31,24 +31,12 @@ public partial class Battle : Node2D
         TargetScore = GetNode<TargetScore>("TargetScore");
         TargetScore.SetScore(targetScore);
 
-        PlayerField.InitializeDices(5);
+        PlayerField.InitializeDices(playerStats.dices);
 
         // PlayDices 3 times with 1 second interval
         PlayDicesMultipleTimes(NumberOfRounds, 1.0f);
 
     }
-
-
-
-
-    // public void ResetBattle()
-    // {
-    //     PlayerField.SetAllDicesInitial();
-    //     PlayerScore.SetScore(0);
-    //     TargetScore.SetScore(50);
-    //     score = 0;
-    //     EmitSignal(SignalName.Ended);
-    // }
 
     private async void PlayDicesMultipleTimes(int times, float intervalSeconds)
     {

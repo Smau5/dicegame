@@ -7,6 +7,8 @@ public partial class PlayerStats : Resource
     private int _lives = 0;
     [Export]
     private int _gold = 0;
+    [Export]
+    public Godot.Collections.Array<DiceStats> dices = new Godot.Collections.Array<DiceStats>();
 
     [Signal]
     public delegate void PlayerStatsChangedChangedEventHandler();

@@ -1,9 +1,11 @@
-[gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3 uid="uid://c1hd0e1c645xs"]
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=3 format=3 uid="uid://c1hd0e1c645xs"]
 
-[ext_resource type="Script" uid="uid://coe65y0jowvuy" path="res://Resources/PlayerStats/PlayerStats.cs" id="1_lnv40"]
+[ext_resource type="Resource" uid="uid://b3tpy6vgx8rej" path="res://Resources/Dices/BasicDice.tres" id="1_x8g5l"]
+[ext_resource type="Script" uid="uid://coe65y0jowvuy" path="res://Resources/PlayerStats/PlayerStats.cs" id="2_h6hlh"]
 
 [resource]
-script = ExtResource("1_lnv40")
+script = ExtResource("2_h6hlh")
 _lives = 3
 _gold = 10
+dices = [ExtResource("1_x8g5l"), ExtResource("1_x8g5l"), ExtResource("1_x8g5l")]
 metadata/_custom_type_script = "uid://coe65y0jowvuy"
