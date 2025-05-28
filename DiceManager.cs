@@ -40,14 +40,14 @@ public partial class DiceManager : Node2D
                         if (action is not null && action is Action)
                         {
                             (action as Action).Execute(DiceBeingDragged);
-                            PlayerField.SetDiceAsUsed(DiceBeingDragged);
+                            // PlayerField.SetDiceAsUsed(DiceBeingDragged);
                         }
                         DiceBeingDragged.Position = DiceBeingDragged.SnapPosition;
                         DiceBeingDragged = null;
                     }
                     else if (isMouseDown && PendingDiceToDrag != null)
                     {
-                        PlayerField.ToggleSelected(PendingDiceToDrag);
+                        // PlayerField.ToggleSelected(PendingDiceToDrag);
                     }
                     isMouseDown = false;
                     PendingDiceToDrag = null;

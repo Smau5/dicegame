@@ -22,23 +22,17 @@ public partial class PlayerField : Node2D
     float PositionX = 0;
     float PositionY = 0;
 
-    private DiceManager DiceManager = null;
     private List<HandDice> HandDices = new List<HandDice>();
 
     private ColorRect ColorRect = null;
 
-    [Export]
-    public DiceStats[] initialDices = new DiceStats[6];
-
     public override void _Ready()
     {
-        DiceManager = GetNode<DiceManager>("../DiceManager");
         ColorRect = GetNode<ColorRect>("ColorRect");
     }
 
     public void InitializeDices(int diceCount)
     {
-
         float spacing = 150;
         for (int i = 0; i < diceCount; i++)
         {
@@ -52,33 +46,33 @@ public partial class PlayerField : Node2D
     }
 
 
-    public void SetDiceAsUsed(Dice usedDice)
-    {
-        var usedHandDice = HandDices.Find(h => h.Dice == usedDice);
-        usedHandDice.Used = true;
-        usedHandDice.Dice.SetEnabled(false);
-        SetSelected(usedHandDice.Dice, false);
-    }
+    // public void SetDiceAsUsed(Dice usedDice)
+    // {
+    //     var usedHandDice = HandDices.Find(h => h.Dice == usedDice);
+    //     usedHandDice.Used = true;
+    //     usedHandDice.Dice.SetEnabled(false);
+    //     SetSelected(usedHandDice.Dice, false);
+    // }
 
-    public void ToggleSelected(Dice selectedDice)
-    {
-        var handDice = HandDices.Find(h => h.Dice == selectedDice);
-        SetSelected(selectedDice, !handDice.Selected);
-    }
+    // public void ToggleSelected(Dice selectedDice)
+    // {
+    //     var handDice = HandDices.Find(h => h.Dice == selectedDice);
+    //     SetSelected(selectedDice, !handDice.Selected);
+    // }
 
-    public void SetSelected(Dice selectedDice, bool selected)
-    {
-        var handDice = HandDices.Find(h => h.Dice == selectedDice);
-        handDice.Selected = selected;
-        if (selected)
-        {
-            handDice.Dice.Scale = new Vector2(1.1f, 1.1f);
-        }
-        else
-        {
-            handDice.Dice.Scale = new Vector2(1f, 1f);
-        }
-    }
+    // public void SetSelected(Dice selectedDice, bool selected)
+    // {
+    //     var handDice = HandDices.Find(h => h.Dice == selectedDice);
+    //     handDice.Selected = selected;
+    //     if (selected)
+    //     {
+    //         handDice.Dice.Scale = new Vector2(1.1f, 1.1f);
+    //     }
+    //     else
+    //     {
+    //         handDice.Dice.Scale = new Vector2(1f, 1f);
+    //     }
+    // }
 
     public void RerollAllDices()
     {
@@ -90,28 +84,28 @@ public partial class PlayerField : Node2D
         }
     }
 
-    public void SetAllDicesInitial()
-    {
-        foreach (var handDice in HandDices)
-        {
-            handDice.Used = false;
-            handDice.Dice.SetEnabled(true);
-            handDice.Dice.Reset();
-        }
+    // public void SetAllDicesInitial()
+    // {
+    //     foreach (var handDice in HandDices)
+    //     {
+    //         handDice.Used = false;
+    //         handDice.Dice.SetEnabled(true);
+    //         handDice.Dice.Reset();
+    //     }
 
-    }
+    // }
 
-    public void RerollSelectedDices()
-    {
-        foreach (var handDice in HandDices)
-        {
-            if (handDice.Selected)
-            {
-                ToggleSelected(handDice.Dice);
-                handDice.Dice.Roll();
-            }
-        }
-    }
+    // public void RerollSelectedDices()
+    // {
+    //     foreach (var handDice in HandDices)
+    //     {
+    //         if (handDice.Selected)
+    //         {
+    //             ToggleSelected(handDice.Dice);
+    //             handDice.Dice.Roll();
+    //         }
+    //     }
+    // }
 
 
     public List<Dice> GetDices()

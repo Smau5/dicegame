@@ -17,7 +17,6 @@ public partial class Dice : Node2D
     {
         // initial snapPosition
         SnapPosition = Position;
-        Roll();
     }
 
     public void Roll()

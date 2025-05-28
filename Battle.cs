@@ -9,13 +9,11 @@ public partial class Battle : Node2D
 {
     [Signal]
     public delegate void EndedEventHandler(Battle battle);
-    const int playerRerolls = 1;
-    const int playerThrows = 3;
-    int PlayerRerollRemaining = playerRerolls;
-    int PlayerThrowsRemaining = playerThrows;
+    [Export]
+    int NumberOfRounds = 3;
     private PlayerField PlayerField = null;
-    private RerollSelectedButton RerollSelected = null;
     int score = 0;
+    [Export]
     int targetScore = 50;
     private PlayerScore PlayerScore = null;
     private TargetScore TargetScore = null;
@@ -29,42 +27,36 @@ public partial class Battle : Node2D
 
 
         PlayerField = GetNode<PlayerField>("PlayerField");
-        RerollSelected = GetNode<RerollSelectedButton>("RerollSelectedButton");
         PlayerScore = GetNode<PlayerScore>("PlayerScore");
         TargetScore = GetNode<TargetScore>("TargetScore");
         TargetScore.SetScore(targetScore);
-        RerollSelected.SetLabel(PlayerRerollRemaining);
+
+        PlayerField.InitializeDices(5);
+
+        // PlayDices 3 times with 1 second interval
+        PlayDicesMultipleTimes(NumberOfRounds, 1.0f);
+
     }
 
 
-    public void OnRerollSelectedPressed()
+
+
+    // public void ResetBattle()
+    // {
+    //     PlayerField.SetAllDicesInitial();
+    //     PlayerScore.SetScore(0);
+    //     TargetScore.SetScore(50);
+    //     score = 0;
+    //     EmitSignal(SignalName.Ended);
+    // }
+
+    private async void PlayDicesMultipleTimes(int times, float intervalSeconds)
     {
-        if (PlayerRerollRemaining > 0)
+        for (int i = 0; i < times; i++)
         {
-            SetRemainingRerolls(PlayerRerollRemaining - 1);
-            PlayerField.RerollSelectedDices();
+            PlayDices();
+            await ToSignal(GetTree().CreateTimer(intervalSeconds), "timeout");
         }
-    }
-
-
-    private void SetRemainingRerolls(int remainingRerolls)
-    {
-        PlayerRerollRemaining = remainingRerolls;
-        RerollSelected.SetLabel(PlayerRerollRemaining);
-    }
-
-    public void ResetRerolls()
-    {
-        SetRemainingRerolls(playerRerolls);
-    }
-
-    public void ResetBattle()
-    {
-        PlayerField.SetAllDicesInitial();
-        PlayerScore.SetScore(0);
-        TargetScore.SetScore(50);
-        score = 0;
-        EmitSignal(SignalName.Ended);
     }
 
 
