@@ -8,22 +8,22 @@
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_1046u")
-playerStats = ExtResource("2_lrdw4")
+PlayerStats = ExtResource("2_lrdw4")
 
 [node name="PlayerScore" type="Label" parent="."]
-offset_left = 84.0
-offset_top = 259.0
-offset_right = 366.0
-offset_bottom = 314.0
+offset_left = 655.0
+offset_top = 422.0
+offset_right = 937.0
+offset_bottom = 477.0
 theme_override_font_sizes/font_size = 40
 text = "Player Score:"
 script = ExtResource("6_yflgj")
 
 [node name="TargetScore" type="Label" parent="."]
-offset_left = 84.0
-offset_top = 158.0
-offset_right = 346.0
-offset_bottom = 213.0
+offset_left = 655.0
+offset_top = 262.0
+offset_right = 917.0
+offset_bottom = 317.0
 theme_override_font_sizes/font_size = 40
 text = "Target Score: "
 script = ExtResource("7_lrdw4")

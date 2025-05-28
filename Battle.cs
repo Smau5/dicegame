@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 
 
@@ -43,26 +44,27 @@ public partial class Battle : Node2D
     {
         for (int i = 0; i < times; i++)
         {
-            PlayDices();
+            await PlayDices();
             await ToSignal(GetTree().CreateTimer(intervalSeconds), "timeout");
         }
     }
 
 
-    public void PlayDices()
+    public async Task PlayDices()
     {
         var dices = PlayerField.GetDices();
 
         PlayerField.RollAllDices();
+        await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
         List<int> seenNumbers = new List<int>();
         foreach (var item in dices)
         {
-            int repeatedNumber = seenNumbers.Count(n => n == item.Value);
-            score += item.Value * (repeatedNumber + 1);
+            score += item.Value;
             seenNumbers.Add(item.Value);
+            PlayerScore.SetScore(score);
+            await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
         }
 
-        PlayerScore.SetScore(score);
     }
 
 
