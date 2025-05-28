@@ -18,7 +18,8 @@ public partial class Battle : Node2D
     private PlayerScore PlayerScore = null;
     private TargetScore TargetScore = null;
     [Export]
-    public PlayerStats playerStats = null;
+    public PlayerStats PlayerStats = null;
+
 
     public override void _Ready()
     {
@@ -31,7 +32,7 @@ public partial class Battle : Node2D
         TargetScore = GetNode<TargetScore>("TargetScore");
         TargetScore.SetScore(targetScore);
 
-        PlayerField.InitializeDices(playerStats.dices);
+        PlayerField.InitializeDices(PlayerStats.dices);
 
         // PlayDices 3 times with 1 second interval
         PlayDicesMultipleTimes(NumberOfRounds, 1.0f);
@@ -52,7 +53,7 @@ public partial class Battle : Node2D
     {
         var dices = PlayerField.GetDices();
 
-        PlayerField.RerollAllDices();
+        PlayerField.RollAllDices();
         List<int> seenNumbers = new List<int>();
         foreach (var item in dices)
         {

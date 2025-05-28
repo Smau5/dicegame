@@ -5,8 +5,7 @@ using System.Collections.Generic;
 public class HandDice
 {
     public Dice Dice;
-    public bool Used;
-    public bool Selected = false;
+    public bool Rolled;
 
     public HandDice(Dice dice)
     {
@@ -31,20 +30,6 @@ public partial class PlayerField : Node2D
         ColorRect = GetNode<ColorRect>("ColorRect");
     }
 
-    public void InitializeDices(int diceCount)
-    {
-        float spacing = 150;
-        for (int i = 0; i < diceCount; i++)
-        {
-            Dice diceInstance = DiceScene.Instantiate<Dice>();
-            float x = spacing - (ColorRect.Size.X / 2) + i * spacing;
-            diceInstance.Position = new Vector2(x, PositionY);
-            diceInstance.SnapPosition = new Vector2(x, PositionY);
-            HandDices.Add(new HandDice(diceInstance));
-            AddChild(diceInstance);
-        }
-    }
-
     public void InitializeDices(Godot.Collections.Array<DiceStats> dices)
     {
         float spacing = 150;
@@ -56,6 +41,7 @@ public partial class PlayerField : Node2D
             diceInstance.SnapPosition = new Vector2(x, PositionY);
             diceInstance.stats = dices[i];
             HandDices.Add(new HandDice(diceInstance));
+            SetDicesInitialState();
             AddChild(diceInstance);
         }
     }
@@ -89,14 +75,30 @@ public partial class PlayerField : Node2D
     //     }
     // }
 
-    public void RerollAllDices()
+    public void SetDicesInitialState()
     {
         foreach (var handDice in HandDices)
         {
-            handDice.Used = false;
-            handDice.Dice.SetEnabled(true);
-            handDice.Dice.Roll();
+            handDice.Rolled = false;
+            handDice.Dice.Reset();
         }
+    }
+
+
+    public void RollAllDices()
+    {
+        foreach (var handDice in HandDices)
+        {
+            handDice.Dice.Roll();
+            SetDiceAsRolled(handDice);
+        }
+    }
+
+    public void SetDiceAsRolled(HandDice dice)
+    {
+        dice.Rolled = true;
+
+
     }
 
     // public void SetAllDicesInitial()

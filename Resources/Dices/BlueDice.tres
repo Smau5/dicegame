@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="DiceStats" load_steps=2 format=3 uid="uid://coiutchh7s2oy"]
+
+[ext_resource type="Script" uid="uid://diaawt7jtir4n" path="res://Resources/Dices/DiceStats.cs" id="1_erxht"]
+
+[resource]
+script = ExtResource("1_erxht")
+Numbers = PackedInt32Array(6, 6, 6, 6, 6, 6)
+color = Color(0.383448, 0.504531, 1, 1)
+metadata/_custom_type_script = "uid://diaawt7jtir4n"

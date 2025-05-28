@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://buvquayo0ycoj"]
 
 [ext_resource type="Script" uid="uid://ddw4ex5sljbu0" path="res://Dice.cs" id="1_ju2fo"]
-[ext_resource type="Resource" uid="uid://b3tpy6vgx8rej" path="res://Resources/Dices/BasicDice.tres" id="2_m4jp2"]
+[ext_resource type="Resource" uid="uid://coiutchh7s2oy" path="res://Resources/Dices/BlueDice.tres" id="2_m4jp2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ju2fo"]
 size = Vector2(100, 100)

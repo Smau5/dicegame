@@ -6,6 +6,8 @@ public partial class DiceStats : Resource
 {
     [Export]
     public int[] Numbers = new int[6];
+    [Export]
+    public Color color = new Color(1, 1, 1, 1);
     public int GetRandomNumber()
     {
         if (Numbers == null || Numbers.Length == 0)

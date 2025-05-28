@@ -17,6 +17,8 @@ public partial class Dice : Node2D
     {
         // initial snapPosition
         SnapPosition = Position;
+        ColorRect colorRect = GetNode<ColorRect>("ColorRect");
+        colorRect.Color = stats.color;
     }
 
     public void Roll()
@@ -35,19 +37,19 @@ public partial class Dice : Node2D
 
     }
 
-    public void SetEnabled(bool value)
-    {
-        _enabled = value;
-        var colorRect = GetNode<ColorRect>("ColorRect");
-        if (value)
-        {
-            colorRect.Color = new Color(1, 1, 1);
-        }
-        else
-        {
-            colorRect.Color = new Color(0.5f, 0.5f, 0.5f);
-        }
-    }
+    // public void SetEnabled(bool value)
+    // {
+    //     _enabled = value;
+    //     var colorRect = GetNode<ColorRect>("ColorRect");
+    //     if (value)
+    //     {
+    //         colorRect.Color = new Color(1, 1, 1);
+    //     }
+    //     else
+    //     {
+    //         colorRect.Color = new Color(0.5f, 0.5f, 0.5f);
+    //     }
+    // }
 
 
 }
