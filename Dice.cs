@@ -5,7 +5,19 @@ public partial class Dice : Node2D
 {
 
     public Vector2 SnapPosition = new Vector2(0, 0);
-    public int Value = 0;
+    private int _value = 0;
+    public int Value
+    {
+        get => _value;
+        set
+        {
+            _value = value;
+            Label label = GetNode<Label>("Label");
+            label.Text = $"{_value}";
+        }
+
+    }
+
     private bool _enabled = true;
     [Export]
     public DiceStats stats;
@@ -25,17 +37,12 @@ public partial class Dice : Node2D
     {
         int diceRoll = stats.GetRandomNumber();
         Value = diceRoll;
-        Label label = GetNode<Label>("Label");
-        label.Text = $"{diceRoll}";
         return Value;
     }
 
     public void Reset()
     {
         Value = 0;
-        Label label = GetNode<Label>("Label");
-        label.Text = $"{Value}";
-
     }
 
     // public void SetEnabled(bool value)
