@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 public class HandDice
 {
@@ -87,13 +88,14 @@ public partial class PlayerField : Node2D
     }
 
 
-    public void RollAllDices()
+    public async Task RollAllDicesAsync()
     {
         foreach (var handDice in HandDices)
         {
             int value = handDice.Dice.Roll();
             SetDiceAsRolled(handDice);
             EmitSignal(SignalName.UpdateScore, value);
+            await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
         }
     }
 

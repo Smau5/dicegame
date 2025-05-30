@@ -15,7 +15,16 @@ public partial class Battle : Node2D
     [Export]
     int targetScore = 50;
     private PlayerField PlayerField = null;
-    int score = 0;
+    private int _score = 0;
+    public int Score
+    {
+        get => _score;
+        set
+        {
+            _score = value;
+            PlayerScore.SetScore(value);
+        }
+    }
     private PlayerScore PlayerScore = null;
     private TargetScore TargetScore = null;
     [Export]
@@ -52,25 +61,14 @@ public partial class Battle : Node2D
 
     public async Task PlayDices()
     {
-        var dices = PlayerField.GetDices();
-
-        PlayerField.RollAllDices();
-        // await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
-        // List<int> seenNumbers = new List<int>();
-        // foreach (var item in dices)
-        // {
-        //     score += item.Value;
-        //     seenNumbers.Add(item.Value);
-        //     PlayerScore.SetScore(score);
-        //     await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
-        // }
-
+        PlayerField.SetDicesInitialState();
+        await PlayerField.RollAllDicesAsync();
     }
 
 
     public void OnUpdateScore(int value)
     {
-        GD.Print(value);
+        Score += value;
     }
 
 
