@@ -30,3 +30,5 @@ script = ExtResource("7_lrdw4")
 
 [node name="PlayerField" parent="." instance=ExtResource("5_yflgj")]
 position = Vector2(930, 708)
+
+[connection signal="UpdateScore" from="PlayerField" to="." method="OnUpdateScore"]

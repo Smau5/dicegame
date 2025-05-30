@@ -21,12 +21,13 @@ public partial class Dice : Node2D
         colorRect.Color = stats.color;
     }
 
-    public void Roll()
+    public int Roll()
     {
         int diceRoll = stats.GetRandomNumber();
         Value = diceRoll;
         Label label = GetNode<Label>("Label");
         label.Text = $"{diceRoll}";
+        return Value;
     }
 
     public void Reset()

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class HandDice
 {
     public Dice Dice;
-    public bool Rolled;
+    public bool Scored;
 
     public HandDice(Dice dice)
     {
@@ -24,6 +24,8 @@ public partial class PlayerField : Node2D
     private List<HandDice> HandDices = new List<HandDice>();
 
     private ColorRect ColorRect = null;
+    [Signal]
+    public delegate void UpdateScoreEventHandler(int value);
 
     public override void _Ready()
     {
@@ -79,7 +81,7 @@ public partial class PlayerField : Node2D
     {
         foreach (var handDice in HandDices)
         {
-            handDice.Rolled = false;
+            handDice.Scored = false;
             handDice.Dice.Reset();
         }
     }
@@ -89,16 +91,15 @@ public partial class PlayerField : Node2D
     {
         foreach (var handDice in HandDices)
         {
-            handDice.Dice.Roll();
+            int value = handDice.Dice.Roll();
             SetDiceAsRolled(handDice);
+            EmitSignal(SignalName.UpdateScore, value);
         }
     }
 
     public void SetDiceAsRolled(HandDice dice)
     {
-        dice.Rolled = true;
-
-
+        dice.Scored = true;
     }
 
     // public void SetAllDicesInitial()
