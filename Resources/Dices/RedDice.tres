@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_jd75m")
-Numbers = PackedInt32Array(2, 2, 2, 5, 5, 5)
+Numbers = PackedInt32Array(1, 2, 3, 4, 5, 6)
 color = Color(1, 0.643382, 0.573705, 1)
+DiceColor = 0
 metadata/_custom_type_script = "uid://diaawt7jtir4n"

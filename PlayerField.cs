@@ -88,15 +88,34 @@ public partial class PlayerField : Node2D
     }
 
 
+
     public async Task RollAllDicesAsync()
     {
+        // red group trigger
+        var redDices = HandDices.FindAll(x => x.Dice.stats.DiceColor == DiceColor.Red);
+        if (redDices.Count >= 3)
+        {
+            foreach (var handDice in HandDices)
+            {
+                handDice.Dice.AddModifier(Modifier.Red3);
+            }
+        }
+        if (redDices.Count >= 5)
+        {
+            foreach (var handDice in HandDices)
+            {
+                handDice.Dice.AddModifier(Modifier.Red5);
+            }
+        }
         foreach (var handDice in HandDices)
         {
-            int value = handDice.Dice.Roll();
+            int value = await handDice.Dice.Roll();
             SetDiceAsRolled(handDice);
             EmitSignal(SignalName.UpdateScore, value);
             await ToSignal(GetTree().CreateTimer(1.0f), "timeout");
         }
+
+
     }
 
     public void SetDiceAsRolled(HandDice dice)

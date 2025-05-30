@@ -1,14 +1,12 @@
-[gd_resource type="Resource" script_class="PlayerStats" load_steps=6 format=3 uid="uid://c1hd0e1c645xs"]
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=4 format=3 uid="uid://c1hd0e1c645xs"]
 
 [ext_resource type="Script" uid="uid://diaawt7jtir4n" path="res://Resources/Dices/DiceStats.cs" id="1_ljmwt"]
-[ext_resource type="Resource" uid="uid://b3tpy6vgx8rej" path="res://Resources/Dices/BasicDice.tres" id="1_x8g5l"]
 [ext_resource type="Script" uid="uid://coe65y0jowvuy" path="res://Resources/PlayerStats/PlayerStats.cs" id="2_h6hlh"]
 [ext_resource type="Resource" uid="uid://ca7w0c275cxgu" path="res://Resources/Dices/RedDice.tres" id="2_hxnva"]
-[ext_resource type="Resource" uid="uid://coiutchh7s2oy" path="res://Resources/Dices/BlueDice.tres" id="3_hxnva"]
 
 [resource]
 script = ExtResource("2_h6hlh")
 _lives = 3
 _gold = 10
-dices = Array[ExtResource("1_ljmwt")]([ExtResource("2_hxnva"), ExtResource("2_hxnva"), ExtResource("1_x8g5l"), ExtResource("3_hxnva"), ExtResource("1_x8g5l")])
+dices = Array[ExtResource("1_ljmwt")]([ExtResource("2_hxnva"), ExtResource("2_hxnva"), ExtResource("2_hxnva"), ExtResource("2_hxnva"), ExtResource("2_hxnva")])
 metadata/_custom_type_script = "uid://coe65y0jowvuy"
